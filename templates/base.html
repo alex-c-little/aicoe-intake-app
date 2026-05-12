@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}AICOE Use Case Intake{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-header__inner">
+      <a class="app-header__title" href="{{ url_for('board') }}">AI Center of Excellence</a>
+      <nav class="app-header__nav">
+        <a href="{{ url_for('board') }}">Roadmap</a>
+        <a href="{{ url_for('intake') }}">Submit Use Case</a>
+        {% if genie_url %}
+          <a class="app-header__genie" href="{{ url_for('genie') }}" target="_blank" rel="noopener">
+            Ask Genie
+          </a>
+        {% else %}
+          <span class="app-header__genie app-header__genie--disabled" title="Set GENIE_SPACE_URL in .env">Ask Genie</span>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class="flashes">
+        {% for cat, msg in messages %}<li class="flash flash--{{ cat }}">{{ msg }}</li>{% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  {% if enable_js %}
+    <script src="{{ url_for('static', filename='enhancements.js') }}" defer></script>
+  {% endif %}
+</body>
+</html>

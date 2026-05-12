@@ -1,0 +1,64 @@
+command: ["gunicorn", "-w", "2", "-b", "0.0.0.0:8000", "app:app"]
+
+# -----------------------------------------------------------------------------
+# Lakebase connection strategy
+# -----------------------------------------------------------------------------
+# The app's service principal must have:
+#   1. CAN_USE on the Lakebase project below.
+#   2. A Postgres role bound via SECURITY LABEL FOR databricks_auth
+#      (see HANDOVER.md for the exact statement).
+#
+# db.py uses the Databricks SDK at connect-time to mint a fresh ~1hr OAuth
+# token via POST /api/2.0/postgres/credentials. The token is cached in-process
+# for 45 minutes then refreshed transparently. No expiring secret ever lives
+# in env.
+#
+# PGHOST / PGDATABASE / PGPORT / PGSSLMODE are the static endpoint coordinates.
+# The SDK fills in the password at runtime.
+#
+# >> EDIT THE FOUR VALUES BELOW MARKED WITH "REPLACE" BEFORE FIRST DEPLOY <<
+# `scripts/setup.sh` will do this for you automatically.
+# -----------------------------------------------------------------------------
+
+env:
+  - name: PGHOST
+    value: "REPLACE_WITH_LAKEBASE_ENDPOINT_HOST"   # ep-xxxx.database.<region>.cloud.databricks.com
+  - name: PGPORT
+    value: "5432"
+  - name: PGDATABASE
+    value: "aicoe"                                  # change if you used a different database name
+  - name: PGSSLMODE
+    value: "require"
+
+  # Lakebase endpoint coordinates used by db.py to generate a fresh credential.
+  - name: LAKEBASE_PROJECT
+    value: "REPLACE_WITH_LAKEBASE_PROJECT_NAME"     # e.g. "aicoe-intake"
+  - name: LAKEBASE_BRANCH
+    value: "production"
+  - name: LAKEBASE_ENDPOINT
+    value: "primary"
+
+  # Flask session secret. Stored in the workspace secret scope listed under `resources`.
+  - name: SECRET_KEY
+    valueFrom: "flask-secret-key"
+
+  # Optional: URL of a Databricks Genie space pointed at the use_cases table.
+  # Powers the "Ask Genie" header button. Leave blank to hide the button.
+  - name: GENIE_SPACE_URL
+    value: ""
+
+  # Optional progressive-enhancement JS (drag-drop, live filter, async detail pane).
+  - name: ENABLE_JS_ENHANCEMENTS
+    value: "true"
+
+# Bind the secret scope so `valueFrom: flask-secret-key` above resolves correctly.
+# Create the secret first:
+#   databricks secrets create-scope aicoe-intake
+#   databricks secrets put-secret aicoe-intake flask-secret-key --string-value "$(python3 -c 'import secrets;print(secrets.token_hex(32))')"
+resources:
+  - name: "flask-secret-key"
+    description: "Flask SECRET_KEY for session cookies."
+    secret:
+      scope: "aicoe-intake"
+      key: "flask-secret-key"
+      permission: "READ"

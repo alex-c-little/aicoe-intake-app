@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Roadmap | AICOE{% endblock %}
+
+{% block content %}
+<section class="board-page {% if selected %}board-page--with-detail{% endif %}">
+
+  <div class="board-toolbar">
+    <h1>Roadmap to an AI-Powered Utility</h1>
+    <form class="board-filter" method="get" action="{{ url_for('board') }}">
+      <input
+        type="search" name="q" value="{{ q }}"
+        placeholder="Search use cases..."
+        autocomplete="off"
+        data-live-filter>
+      <button type="submit">Filter</button>
+      {% if q %}<a class="board-filter__clear" href="{{ url_for('board') }}">Clear</a>{% endif %}
+    </form>
+  </div>
+
+  <div class="board">
+    {% for status in statuses %}
+      <div class="board-column" data-status="{{ status }}">
+        <div class="board-column__header">
+          <span class="board-column__title">{{ status }}</span>
+          <span class="board-column__count">{{ by_status[status] | length }}</span>
+        </div>
+        <div class="board-column__cards" data-drop-zone>
+          {% for uc in by_status[status] %}
+            {% include "_card.html" %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if selected %}
+    <aside class="detail-pane" data-detail-pane>
+      {% with uc = selected %}
+        {% include "_detail_pane.html" %}
+      {% endwith %}
+    </aside>
+  {% endif %}
+
+</section>
+{% endblock %}

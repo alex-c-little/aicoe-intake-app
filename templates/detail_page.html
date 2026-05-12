@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{{ uc.title }} | AICOE{% endblock %}
+
+{% block content %}
+<section class="detail-page">
+  <a class="detail-page__back" href="{{ url_for('board') }}">&larr; Back to roadmap</a>
+  {% set q = '' %}
+  <div class="detail-page__pane">
+    {% include "_detail_pane.html" %}
+  </div>
+</section>
+{% endblock %}

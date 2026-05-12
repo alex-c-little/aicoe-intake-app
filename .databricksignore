@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.local
+.git/
+.gitignore
+.databricks/
+.DS_Store
+
+# Repo-only files — not needed inside the running container.
+README.md
+HANDOVER.md
+scripts/
+seed.py
+seed.sql
+schema.sql

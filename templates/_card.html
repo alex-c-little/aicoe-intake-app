@@ -1,0 +1,20 @@
+<a class="card {% if selected and selected.id == uc.id %}card--selected{% endif %}"
+   href="{{ url_for('board', selected=uc.id, q=q) }}"
+   data-card
+   data-id="{{ uc.id }}"
+   data-status="{{ uc.status }}"
+   draggable="true">
+  <div class="card__title">{{ uc.title }}</div>
+  <div class="card__meta">
+    <span class="card__complexity" title="Complexity">
+      {% set n = uc.complexity or 0 %}
+      {% for i in range(5) %}<span class="dot {% if i < n %}dot--on{% endif %}"></span>{% endfor %}
+    </span>
+    {% if uc.annual_value_low_m is not none and uc.annual_value_high_m is not none %}
+      <span class="card__value">
+        ${{ uc.annual_value_low_m | int }}M&ndash;${{ uc.annual_value_high_m | int }}M/yr
+      </span>
+    {% endif %}
+  </div>
+  {% if uc.phase %}<div class="card__phase">{{ uc.phase }}</div>{% endif %}
+</a>

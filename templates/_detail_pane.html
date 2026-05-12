@@ -1,0 +1,102 @@
+<div class="detail">
+  <div class="detail__header">
+    <h2 class="detail__title">{{ uc.title }}</h2>
+    <a class="detail__close" href="{{ url_for('board', q=q) }}" aria-label="Close">&times;</a>
+  </div>
+
+  {% if uc.solution_description %}
+    <p class="detail__summary">{{ uc.solution_description }}</p>
+  {% endif %}
+
+  {% if uc.annual_value_low_m is not none %}
+    <div class="detail__value">
+      <div class="detail__value-label">QUANTIFIED ANNUAL VALUE</div>
+      <div class="detail__value-amount">
+        ${{ uc.annual_value_low_m | int }}M&ndash;${{ uc.annual_value_high_m | int }}M
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="detail__stats">
+    {% if uc.time_to_value_low_mo %}
+      <div class="detail__stat">
+        <div class="detail__stat-label">TIME TO VALUE</div>
+        <div class="detail__stat-value">{{ uc.time_to_value_low_mo }}&ndash;{{ uc.time_to_value_high_mo }} months</div>
+      </div>
+    {% endif %}
+    {% if uc.complexity %}
+      <div class="detail__stat">
+        <div class="detail__stat-label">COMPLEXITY</div>
+        <div class="detail__stat-value">{{ uc.complexity }}/5</div>
+      </div>
+    {% endif %}
+    {% if uc.phase %}
+      <div class="detail__stat">
+        <div class="detail__stat-label">PHASE</div>
+        <div class="detail__stat-value">{{ uc.phase }}</div>
+      </div>
+    {% endif %}
+  </div>
+
+  <section class="detail__section">
+    <h3>Status</h3>
+    <form method="post" action="{{ url_for('update_status', uc_id=uc.id) }}" data-status-form>
+      <select name="status">
+        {% for s in statuses %}
+          <option value="{{ s }}" {% if s == uc.status %}selected{% endif %}>{{ s }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit">Update</button>
+    </form>
+  </section>
+
+  {% if uc.business_problem %}
+    <section class="detail__section">
+      <h3>Business Problem</h3>
+      <p>{{ uc.business_problem }}</p>
+    </section>
+  {% endif %}
+
+  {% if uc.value_components %}
+    <section class="detail__section">
+      <h3>Value Components</h3>
+      <p>{{ uc.value_components }}</p>
+    </section>
+  {% endif %}
+
+  {% if uc.key_assumptions %}
+    <section class="detail__section">
+      <h3>Key Assumptions</h3>
+      <p>{{ uc.key_assumptions }}</p>
+    </section>
+  {% endif %}
+
+  {% if uc.prerequisites %}
+    <section class="detail__section">
+      <h3>Prerequisites</h3>
+      <p>{{ uc.prerequisites }}</p>
+    </section>
+  {% endif %}
+
+  {% if uc.data_sources %}
+    <section class="detail__section">
+      <h3>Data Requirements</h3>
+      <p>{{ uc.data_sources }}</p>
+    </section>
+  {% endif %}
+
+  <section class="detail__section detail__section--meta">
+    <h3>Intake Details</h3>
+    <dl>
+      {% if uc.requestor_name %}<dt>Requestor</dt><dd>{{ uc.requestor_name }}</dd>{% endif %}
+      {% if uc.executive_sponsor %}<dt>Executive Sponsor</dt><dd>{{ uc.executive_sponsor }}</dd>{% endif %}
+      {% if uc.business_area %}<dt>Business Area</dt><dd>{{ uc.business_area }}</dd>{% endif %}
+      {% if uc.value_stream %}<dt>Value Stream</dt><dd>{{ uc.value_stream }}</dd>{% endif %}
+      {% if uc.ai_capability %}<dt>AI Capability</dt><dd>{{ uc.ai_capability }}</dd>{% endif %}
+      {% if uc.funding_status %}<dt>Funding</dt><dd>{{ uc.funding_status }}</dd>{% endif %}
+      {% if uc.planview_tracking_number %}<dt>Planview #</dt><dd>{{ uc.planview_tracking_number }}</dd>{% endif %}
+      {% if uc.risks %}<dt>Risks</dt><dd>{{ uc.risks }}</dd>{% endif %}
+      {% if uc.roi_timeline %}<dt>ROI Timeline</dt><dd>{{ uc.roi_timeline }}</dd>{% endif %}
+    </dl>
+  </section>
+</div>
