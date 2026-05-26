@@ -35,7 +35,6 @@ CREATE TABLE IF NOT EXISTS use_cases (
     id              TEXT PRIMARY KEY,
     title           TEXT NOT NULL,
     category        TEXT NOT NULL DEFAULT 'Distribution',
-    phase           TEXT,
     status          TEXT NOT NULL DEFAULT 'Backlog',
 
     business_problem        TEXT,
@@ -56,9 +55,6 @@ CREATE TABLE IF NOT EXISTS use_cases (
     time_to_value_high_mo   INTEGER,
 
     data_sources            TEXT,
-    value_components        TEXT,
-    key_assumptions         TEXT,
-    roi_timeline            TEXT,
     prerequisites           TEXT,
 
     created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -217,14 +213,13 @@ def get_use_case(uc_id: str) -> dict | None:
 def create_use_case(data: dict) -> str:
     uc_id = data.get("id") or str(uuid4())
     cols = [
-        "id", "title", "category", "phase", "status",
+        "id", "title", "category", "status",
         "business_problem", "solution_description", "ai_capability",
         "business_area", "value_stream", "executive_sponsor",
         "funding_status", "risks", "requestor_name", "planview_tracking_number",
         "annual_value_low_m", "annual_value_high_m", "complexity",
         "time_to_value_low_mo", "time_to_value_high_mo",
-        "data_sources", "value_components", "key_assumptions",
-        "roi_timeline", "prerequisites",
+        "data_sources", "prerequisites",
     ]
     values = [uc_id] + [data.get(c) for c in cols[1:]]
     placeholders = ",".join(["%s"] * len(cols))

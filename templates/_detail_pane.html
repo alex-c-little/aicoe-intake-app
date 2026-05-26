@@ -30,12 +30,6 @@
         <div class="detail__stat-value">{{ uc.complexity }}/5</div>
       </div>
     {% endif %}
-    {% if uc.phase %}
-      <div class="detail__stat">
-        <div class="detail__stat-label">PHASE</div>
-        <div class="detail__stat-value">{{ uc.phase }}</div>
-      </div>
-    {% endif %}
   </div>
 
   <section class="detail__section">
@@ -54,20 +48,6 @@
     <section class="detail__section">
       <h3>Business Problem</h3>
       <p>{{ uc.business_problem }}</p>
-    </section>
-  {% endif %}
-
-  {% if uc.value_components %}
-    <section class="detail__section">
-      <h3>Value Components</h3>
-      <p>{{ uc.value_components }}</p>
-    </section>
-  {% endif %}
-
-  {% if uc.key_assumptions %}
-    <section class="detail__section">
-      <h3>Key Assumptions</h3>
-      <p>{{ uc.key_assumptions }}</p>
     </section>
   {% endif %}
 
@@ -96,7 +76,6 @@
       {% if uc.funding_status %}<dt>Funding</dt><dd>{{ uc.funding_status }}</dd>{% endif %}
       {% if uc.planview_tracking_number %}<dt>Planview #</dt><dd>{{ uc.planview_tracking_number }}</dd>{% endif %}
       {% if uc.risks %}<dt>Risks</dt><dd>{{ uc.risks }}</dd>{% endif %}
-      {% if uc.roi_timeline %}<dt>ROI Timeline</dt><dd>{{ uc.roi_timeline }}</dd>{% endif %}
     </dl>
   </section>
 </div>

@@ -8,7 +8,6 @@ CREATE TABLE IF NOT EXISTS use_cases (
     id              TEXT PRIMARY KEY,
     title           TEXT NOT NULL,
     category        TEXT NOT NULL DEFAULT 'Distribution',
-    phase           TEXT,
     status          TEXT NOT NULL DEFAULT 'Backlog',
 
     business_problem        TEXT,
@@ -29,9 +28,6 @@ CREATE TABLE IF NOT EXISTS use_cases (
     time_to_value_high_mo   INTEGER,
 
     data_sources            TEXT,
-    value_components        TEXT,
-    key_assumptions         TEXT,
-    roi_timeline            TEXT,
     prerequisites           TEXT,
 
     created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),

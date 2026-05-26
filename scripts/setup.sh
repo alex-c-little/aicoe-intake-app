@@ -40,7 +40,7 @@ if [ -z "${PROFILE:-}" ]; then
 fi
 
 echo "==> Using profile: $PROFILE"
-WORKSPACE_HOST=$(databricks auth env -p "$PROFILE" -o json | jq -r '.env.DATABRICKS_HOST')
+WORKSPACE_HOST=$(databricks auth env --profile "$PROFILE" -o json | jq -r '.env.DATABRICKS_HOST')
 echo "    Workspace:    $WORKSPACE_HOST"
 echo "    App name:     $APP_NAME"
 echo "    Lakebase:     $LAKEBASE_PROJECT / $LAKEBASE_BRANCH / $LAKEBASE_ENDPOINT  (db: $LAKEBASE_DATABASE)"
