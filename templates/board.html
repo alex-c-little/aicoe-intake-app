@@ -5,7 +5,6 @@
 <section class="board-page {% if selected %}board-page--with-detail{% endif %}">
 
   <div class="board-toolbar">
-    <h1>Roadmap to an AI-Powered Utility</h1>
     <form class="board-filter" method="get" action="{{ url_for('board') }}">
       <input
         type="search" name="q" value="{{ q }}"
