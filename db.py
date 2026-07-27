@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS use_cases (
     id              TEXT PRIMARY KEY,
     title           TEXT NOT NULL,
     category        TEXT NOT NULL DEFAULT 'Distribution',
-    status          TEXT NOT NULL DEFAULT 'Backlog',
+    status          TEXT NOT NULL DEFAULT 'Demand',
 
     business_problem        TEXT,
     solution_description    TEXT,

@@ -16,7 +16,17 @@ class Config:
 
     GENIE_SPACE_URL = os.getenv("GENIE_SPACE_URL", "")
 
-    STATUSES = ["Backlog", "Refinement", "Under Review", "Approved"]
+    # Board columns — the 8 stages of PPL's "Use Case Intake and Delivery Process".
+    STATUSES = [
+        "Demand",
+        "Discovery",
+        "Qualify",
+        "Prioritize & Plan",
+        "Value Capture & Reviews/Approvals",
+        "Develop",
+        "Final Review",
+        "Deployment",
+    ]
 
     AI_CAPABILITIES = [
         "Forecasting",

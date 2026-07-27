@@ -5,8 +5,9 @@
 <section class="intake-page">
   <h1>Submit a Use Case for AICOE Review</h1>
   <p class="intake-page__lede">
-    New submissions land in <strong>Backlog</strong>. The AICOE team will move it through
-    Refinement &rarr; Under Review &rarr; Approved.
+    New submissions land in <strong>Demand</strong>. The AICOE team will move it through
+    Discovery &rarr; Qualify &rarr; Prioritize &amp; Plan &rarr; Value Capture &amp; Reviews/Approvals
+    &rarr; Develop &rarr; Final Review &rarr; Deployment.
   </p>
 
   <form class="intake-form" method="post" action="{{ url_for('intake') }}">
@@ -109,7 +110,7 @@
 
     <div class="intake-form__actions">
       <a class="btn-secondary" href="{{ url_for('board') }}">Cancel</a>
-      <button class="btn-primary" type="submit">Submit to Backlog</button>
+      <button class="btn-primary" type="submit">Submit to Demand</button>
     </div>
   </form>
 </section>

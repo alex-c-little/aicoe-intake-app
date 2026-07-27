@@ -1,9 +1,10 @@
 # AICOE Use Case Intake App
 
-A small Flask app that replaces a SharePoint intake list with a kanban board for tracking AI use case proposals through the AICOE intake flow:
+A small Flask app that replaces a SharePoint intake list with a kanban board for tracking AI use case proposals through the AICOE Use Case Intake and Delivery Process:
 
 ```
-Backlog  →  Refinement  →  Under Review  →  Approved
+Demand  →  Discovery  →  Qualify  →  Prioritize & Plan  →
+Value Capture & Reviews/Approvals  →  Develop  →  Final Review  →  Deployment
 ```
 
 The board ships seeded with 15 utility-distribution use cases from the AI roadmap whitepaper so new installs aren't empty. The app deploys to Databricks Apps and persists to Lakebase Postgres.
@@ -57,7 +58,7 @@ README.md               You are here.
 | GET | `/usecase/<id>/fragment` | HTML fragment used by the JS async swap. |
 | POST | `/usecase/<id>/status` | Update status. Form-encoded or JSON. |
 | GET | `/intake` | Intake form. |
-| POST | `/intake` | Create a new use case in Backlog. |
+| POST | `/intake` | Create a new use case in Demand. |
 | GET | `/genie` | Redirects to `GENIE_SPACE_URL` (the "Ask Genie" button). |
 | GET | `/healthz` | Liveness check. |
 

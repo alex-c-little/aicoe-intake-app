@@ -12,7 +12,7 @@ SEED_USE_CASES: list[dict] = [
     # ---- Phase 1 (foundational) ----
     {
         "title": "Outage Detection & Prediction",
-        "status": "Under Review",
+        "status": "Qualify",
         "business_problem": (
             "Slow detection of outages drives long SAIDI minutes, wasted truck rolls, "
             "and customer dissatisfaction. AMI last-gasp signals are not integrated with OMS today."
@@ -32,7 +32,7 @@ SEED_USE_CASES: list[dict] = [
     },
     {
         "title": "Fault Location, Isolation, and Service Restoration (FLISR)",
-        "status": "Under Review",
+        "status": "Qualify",
         "business_problem": (
             "Manual fault location and restoration takes 8+ SAIDI minutes per event and consumes "
             "500,000 crew hours annually."
@@ -52,7 +52,7 @@ SEED_USE_CASES: list[dict] = [
     },
     {
         "title": "Predictive Maintenance for OH & UG Assets",
-        "status": "Refinement",
+        "status": "Discovery",
         "business_problem": (
             "200,000 distribution transformers with a 5% annual failure rate drive emergency O&M "
             "premiums and customer interruptions."
@@ -72,7 +72,7 @@ SEED_USE_CASES: list[dict] = [
     },
     {
         "title": "Load Forecasting at Feeder Level",
-        "status": "Refinement",
+        "status": "Discovery",
         "business_problem": (
             "System-level load forecasts miss feeder-level variation, leading to over-built capital "
             "and stalled DER interconnection studies."
@@ -92,7 +92,7 @@ SEED_USE_CASES: list[dict] = [
     },
     {
         "title": "Grid Reliability Monitoring",
-        "status": "Approved",
+        "status": "Prioritize & Plan",
         "business_problem": (
             "Reliability reporting is manual; 15 analysts spend 50% of their time on SAIDI/SAIFI/CAIDI "
             "compilation rather than analysis."
@@ -114,7 +114,7 @@ SEED_USE_CASES: list[dict] = [
     # ---- Phase 2 (proactive optimization) ----
     {
         "title": "DER & EV Charging Management",
-        "status": "Backlog",
+        "status": "Demand",
         "business_problem": (
             "Uncoordinated DER and EV charging is overloading distribution transformers and forcing "
             "expensive capacity upgrades."
@@ -134,7 +134,7 @@ SEED_USE_CASES: list[dict] = [
     },
     {
         "title": "Grid Model Clean-up & Connectivity Inference",
-        "status": "Refinement",
+        "status": "Discovery",
         "business_problem": (
             "15-25% GIS connectivity error rate causes failed work orders, inaccurate outage "
             "locations, and FLISR misfires."
@@ -154,7 +154,7 @@ SEED_USE_CASES: list[dict] = [
     },
     {
         "title": "Storm Impact Prediction & Crew Pre-Staging",
-        "status": "Backlog",
+        "status": "Demand",
         "business_problem": (
             "Major storms cost $100M/yr in restoration; crews are staged reactively rather than "
             "predictively."
@@ -174,7 +174,7 @@ SEED_USE_CASES: list[dict] = [
     },
     {
         "title": "Voltage Optimization & Loss Reduction",
-        "status": "Backlog",
+        "status": "Demand",
         "business_problem": (
             "Technical losses run ~5% of 5,000 MW system load; voltage violations and reactive-power "
             "costs are addressable but unmanaged."
@@ -194,7 +194,7 @@ SEED_USE_CASES: list[dict] = [
     },
     {
         "title": "Hosting Capacity Analysis",
-        "status": "Backlog",
+        "status": "Demand",
         "business_problem": (
             "DER interconnection cycle time is 3-6 months; engineering studies are a bottleneck."
         ),
@@ -215,7 +215,7 @@ SEED_USE_CASES: list[dict] = [
     # ---- Phase 3 (risk mitigation / advanced automation) ----
     {
         "title": "Distribution Network Digital Twin",
-        "status": "Backlog",
+        "status": "Demand",
         "business_problem": (
             "No simulation environment to test switching, DER scenarios, or planning decisions "
             "before they hit the live grid."
@@ -235,7 +235,7 @@ SEED_USE_CASES: list[dict] = [
     },
     {
         "title": "Automated Work Package Generation for Crews",
-        "status": "Backlog",
+        "status": "Demand",
         "business_problem": (
             "200 planners spend 50% of their time manually assembling work packages; 5,000 jobs/yr "
             "are delayed by gaps."
@@ -255,7 +255,7 @@ SEED_USE_CASES: list[dict] = [
     },
     {
         "title": "Automated Work Order Creation & Crew Dispatching",
-        "status": "Backlog",
+        "status": "Demand",
         "business_problem": (
             "50 dispatchers spend 37% of their time on manual work order creation; crew utilization "
             "and overtime remain stubbornly suboptimal."
@@ -275,7 +275,7 @@ SEED_USE_CASES: list[dict] = [
     },
     {
         "title": "Self-healing Distribution Networks",
-        "status": "Backlog",
+        "status": "Demand",
         "business_problem": (
             "Sustained outages still drive SAIDI minutes that customers and regulators no longer accept."
         ),
@@ -294,7 +294,7 @@ SEED_USE_CASES: list[dict] = [
     },
     {
         "title": "Hyper-local Probabilistic Risk Pricing",
-        "status": "Backlog",
+        "status": "Demand",
         "business_problem": (
             "$300M annual distribution capital is allocated with limited asset-level risk insight; "
             "5 high-consequence failures per year are currently preventable."

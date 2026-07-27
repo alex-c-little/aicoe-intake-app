@@ -1,7 +1,9 @@
 """AICOE Use Case Intake App.
 
-A small Flask app for tracking AI use case proposals through the AICOE intake flow:
-    Backlog -> Refinement -> Under Review -> Approved
+A small Flask app for tracking AI use case proposals through the AICOE
+Use Case Intake and Delivery Process:
+    Demand -> Discovery -> Qualify -> Prioritize & Plan ->
+    Value Capture & Reviews/Approvals -> Develop -> Final Review -> Deployment
 
 Renders fully without JavaScript. Enable optional progressive enhancements
 (drag-and-drop, live filter, async detail pane) by setting ENABLE_JS_ENHANCEMENTS=true.
@@ -90,7 +92,7 @@ def create_app() -> Flask:
             data = {
                 "title": form.get("title", "").strip(),
                 "category": "Distribution",
-                "status": "Backlog",
+                "status": "Demand",
                 "requestor_name": form.get("requestor_name"),
                 "planview_tracking_number": form.get("planview_tracking_number"),
                 "business_problem": form.get("business_problem"),
@@ -114,7 +116,7 @@ def create_app() -> Flask:
                 return render_template("intake.html", form=form), 400
 
             uc_id = db.create_use_case(data)
-            flash(f"Submitted '{data['title']}' to Backlog.", "success")
+            flash(f"Submitted '{data['title']}' to Demand.", "success")
             return redirect(url_for("board", selected=uc_id))
 
         return render_template("intake.html", form={})

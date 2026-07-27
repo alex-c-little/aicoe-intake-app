@@ -115,9 +115,14 @@ body {
 
 .board {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  /* One column per status; sizes to a sensible min and scrolls horizontally
+     when there are too many to fit (the process has 8 stages). */
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(240px, 1fr);
   gap: 12px;
   min-height: 70vh;
+  overflow-x: auto;
+  padding-bottom: 8px;
 }
 .board-column {
   background: var(--bg-elev);
