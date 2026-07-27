@@ -21,8 +21,11 @@ command: ["gunicorn", "-w", "2", "-b", "0.0.0.0:8000", "app:app"]
 # -----------------------------------------------------------------------------
 
 env:
+  # NOTE: no DATABASE_URL — the app mints a fresh Lakebase token at connect time
+  # via the app's service principal (see db.py). The SP has CAN_USE on the
+  # `aicoe-intake` Lakebase project, which is what authorizes that mint.
   - name: PGHOST
-    value: "ep-quiet-salad-d26fzeiu.database.us-east-1.cloud.databricks.com"
+    value: "ep-curly-breeze-d250da7z.database.us-east-1.cloud.databricks.com"
   - name: PGPORT
     value: "5432"
   - name: PGDATABASE

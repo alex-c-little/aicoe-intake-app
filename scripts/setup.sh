@@ -57,8 +57,9 @@ command -v psql >/dev/null       || { echo "ERROR: psql not found. brew install 
 
 CLI_VER=$(databricks --version | awk '{print $3}' | sed 's/^v//')
 echo "    databricks CLI v$CLI_VER (need >= 0.285.0)"
-# crude version check
-if [[ "$(printf '%s\n0.285.0\n' "$CLI_VER" | sort -V | head -1)" != "0.285.0" ]]; then
+# crude version check — treat the lowest sorted version as the floor. Note the
+# CLI renumbered from the 0.2xx line to 1.x, so any 1.x is newer than 0.285.0.
+if [[ "$(printf '%s\n0.285.0\n' "$CLI_VER" | sort -V | head -1)" != "0.285.0" && "${CLI_VER%%.*}" -lt 1 ]]; then
   echo "ERROR: CLI is below 0.285.0. Upgrade."
   exit 1
 fi
